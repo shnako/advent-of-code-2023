@@ -2,6 +2,9 @@
 
 I tried to make the code as clean and easy to read as possible, and I've also provided a short explanation to most solutions so that they're easier to understand.
 
+| Day | Puzzle                                             | Solution                                                                   | Results                                                                    | Input                                                               | Text                                                                  |
+|-----|----------------------------------------------------|----------------------------------------------------------------------------|----------------------------------------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------------------------|
+| 01  | [Trebuchet?!](https://adventofcode.com/2023/day/1) | [Day 01 solution](/src/main/java/com/shnako/solutions/day01/Solution.java) | [Day 01 test](/src/test/java/com/shnako/solutions/day01/SolutionTest.java) | [Day 01 input](/src/main/java/com/shnako/solutions/day01/input.txt) | [Day 01 puzzle](/src/main/java/com/shnako/solutions/day01/puzzle.txt) |
 
 
 ## Structure
