@@ -6,6 +6,7 @@ I tried to make the code as clean and easy to read as possible, and I've also pr
 |-----|-------------------------------------------------------|----------------------------------------------------------------------------|----------------------------------------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------------------------|
 | 01  | [Trebuchet?!](https://adventofcode.com/2023/day/1)    | [Day 01 solution](/src/main/java/com/shnako/solutions/day01/Solution.java) | [Day 01 test](/src/test/java/com/shnako/solutions/day01/SolutionTest.java) | [Day 01 input](/src/main/java/com/shnako/solutions/day01/input.txt) | [Day 01 puzzle](/src/main/java/com/shnako/solutions/day01/puzzle.txt) |
 | 02  | [Cube Conundrum](https://adventofcode.com/2023/day/2) | [Day 02 solution](/src/main/java/com/shnako/solutions/day02/Solution.java) | [Day 02 test](/src/test/java/com/shnako/solutions/day02/SolutionTest.java) | [Day 02 input](/src/main/java/com/shnako/solutions/day02/input.txt) | [Day 02 puzzle](/src/main/java/com/shnako/solutions/day02/puzzle.txt) |
+| 03  | [Gear Ratios](https://adventofcode.com/2023/day/3)    | [Day 03 solution](/src/main/java/com/shnako/solutions/day03/Solution.java) | [Day 03 test](/src/test/java/com/shnako/solutions/day03/SolutionTest.java) | [Day 03 input](/src/main/java/com/shnako/solutions/day03/input.txt) | [Day 03 puzzle](/src/main/java/com/shnako/solutions/day03/puzzle.txt) |
 
 
 ## Structure
