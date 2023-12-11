@@ -45,7 +45,7 @@ public class Solution extends SolutionBase {
 
     @Override
     public String runPart1() throws IOException {
-        char[][] map = parseInput();
+        char[][] map = InputProcessingUtil.readCharGrid(getDay());
         int[] startLocation = findStart(map);
         PipeLoop pipeLoop = findPipeLoop(map, startLocation);
         int result = Math.ceilDiv(pipeLoop.getSize(), 2);
@@ -54,7 +54,7 @@ public class Solution extends SolutionBase {
 
     @Override
     public String runPart2() throws IOException {
-        char[][] map = parseInput();
+        char[][] map = InputProcessingUtil.readCharGrid(getDay());
         int[] startLocation = findStart(map);
         PipeLoop pipeLoop = findPipeLoop(map, startLocation);
         replaceStartWithPipeSegment(map, pipeLoop);
@@ -74,13 +74,6 @@ public class Solution extends SolutionBase {
         }
 
         return String.valueOf(tilesInsideLoop);
-    }
-
-    private char[][] parseInput() throws IOException {
-        return InputProcessingUtil.readInputLines(getDay())
-                .stream()
-                .map(String::toCharArray)
-                .toArray(char[][]::new);
     }
 
     private int[] findStart(char[][] map) {

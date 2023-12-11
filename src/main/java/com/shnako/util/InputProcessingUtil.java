@@ -14,4 +14,11 @@ public final class InputProcessingUtil {
             return stream.collect(Collectors.toList());
         }
     }
+
+    public static char[][] readCharGrid(String day) throws IOException {
+        return readInputLines(day)
+                .stream()
+                .map(String::toCharArray)
+                .toArray(char[][]::new);
+    }
 }
