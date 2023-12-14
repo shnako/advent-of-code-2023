@@ -27,9 +27,8 @@ public class Solution extends SolutionBase {
             if (!repetitionFound) {
                 int hashCode = platform.calculateHashCode();
                 if (loadToCycleMap.containsKey(hashCode)) {
-                    System.out.println(">>FOUND after " + i);
-                    int repetitionCycles = i - loadToCycleMap.get(hashCode);
-                    i = i + repetitionCycles * ((tiltCycles - i) / repetitionCycles) - 1;
+                    int repeatingCycleLength = i - loadToCycleMap.get(hashCode);
+                    i = i + repeatingCycleLength * ((tiltCycles - i) / repeatingCycleLength);
                     repetitionFound = true;
                 } else {
                     loadToCycleMap.put(hashCode, i);
@@ -82,6 +81,7 @@ public class Solution extends SolutionBase {
         private int calculateHashCode() {
             return movingRocks.stream()
                     .map(List::hashCode)
+                    .toList()
                     .hashCode();
         }
 
