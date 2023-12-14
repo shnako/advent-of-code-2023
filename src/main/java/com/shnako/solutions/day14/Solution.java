@@ -14,41 +14,8 @@ public class Solution extends SolutionBase {
     public String runPart1() throws IOException {
         List<String> input = InputProcessingUtil.readInputLines(getDay());
         Platform platform = new Platform(input);
-        List<List<Integer>> northGravityRockList = getNorthGravityColumnMap(platform);
-
-        int result = 0;
-        for (int y = 0; y < platform.height; y++) {
-            for (int x : northGravityRockList.get(y)) {
-                if (!platform.fixedRocks.get(x).contains(y)) {
-                    result += platform.height - x;
-                }
-            }
-        }
-
-        return String.valueOf(result);
-    }
-
-    private List<List<Integer>> getNorthGravityColumnMap(Platform platform) {
-        List<List<Integer>> result = initializeListOfListOfInt(platform.width);
-
-        for (int x = 0; x < platform.height; x++) {
-            for (int y : platform.fixedRocks.get(x)) {
-                result.get(y).add(x);
-            }
-        }
-
-        for (int x = 0; x < platform.height; x++) {
-            for (int y : platform.movingRocks.get(x)) {
-                int finalX = x;
-                int highestFoundRock = Streams.findLast(result.get(y).stream()
-                                .filter(rockX -> rockX < finalX))
-                                .orElse(-1);
-                result.get(y).add(highestFoundRock + 1);
-                Collections.sort(result.get(y));
-            }
-        }
-
-        return result;
+        platform.tiltNorth();
+        return String.valueOf(platform.calculateLoad());
     }
 
     @Override
@@ -66,7 +33,7 @@ public class Solution extends SolutionBase {
 
     private class Platform {
         private final List<List<Integer>> fixedRocks;
-        private final List<List<Integer>> movingRocks;
+        private List<List<Integer>> movingRocks;
 
         private final int height;
         private final int width;
@@ -89,6 +56,47 @@ public class Solution extends SolutionBase {
                     }
                 }
             }
+        }
+
+        private int calculateLoad() {
+            int result = 0;
+            for (int x = 0; x < height; x++) {
+                result += (height - x) * movingRocks.get(x).size();
+            }
+            return result;
+        }
+
+        // 0 - N | 1 - W | 2 - S | 3 - E
+        private void tilt(int direction) {
+            switch(direction) {
+                case 0: tiltNorth();
+//                case 1: tiltSouth();
+            }
+        }
+
+        private void tiltNorth() {
+            List<List<Integer>> northGravityColumns = initializeListOfListOfInt(width);
+
+            for (int x = 0; x < height; x++) {
+                for (int y : fixedRocks.get(x)) {
+                    northGravityColumns.get(y).add(x);
+                }
+            }
+
+            List<List<Integer>> newMovingRocks = initializeListOfListOfInt(height);
+            for (int x = 0; x < height; x++) {
+                for (int y : movingRocks.get(x)) {
+                    int finalX = x;
+                    int highestFoundRock = Streams.findLast(northGravityColumns.get(y).stream()
+                                    .filter(rockX -> rockX < finalX))
+                            .orElse(-1);
+                    northGravityColumns.get(y).add(highestFoundRock + 1);
+                    newMovingRocks.get(highestFoundRock + 1).add(y);
+                    Collections.sort(northGravityColumns.get(y));
+                }
+            }
+
+            movingRocks = newMovingRocks;
         }
     }
 }
