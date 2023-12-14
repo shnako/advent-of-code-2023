@@ -16,6 +16,6 @@ public class SolutionTest implements SolutionBaseTest {
 
     @Test
     public void testPart2() throws Exception {
-        assertEquals("456", solution.runPart2());
+        assertEquals("104815", solution.runPart2());
     }
 }
