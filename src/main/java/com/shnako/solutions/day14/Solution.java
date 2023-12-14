@@ -6,6 +6,19 @@ import com.shnako.util.InputProcessingUtil;
 import java.io.IOException;
 import java.util.*;
 
+/*
+Part 1:
+We move all the movable rocks as far north as possible.
+The result is the load calculated as described.
+
+Part 2:
+We implement the tilts in the 3 other directions as well and go through all of them for a cycle.
+The solution here is based on the observation that the cycles will eventually repeat periodically.
+Therefore, we don't need to compute all 1B cycles, we can do it until we detect a repetition and skip lots of cycles.
+We keep a hash of the state of movable rocks in a map for each cycle. We know we found a repetition once a hash repeats.
+We can then skip as many full repetitions that remain, calculating only the remaining tilts and get to the same result.
+The result is the load calculated as described.
+ */
 public class Solution extends SolutionBase {
     @Override
     public String runPart1() throws IOException {
@@ -20,18 +33,18 @@ public class Solution extends SolutionBase {
         final int tiltCycles = 1000000000;
         List<String> input = InputProcessingUtil.readInputLines(getDay());
         Platform platform = new Platform(input);
-        Map<Integer, Integer> loadToCycleMap = new HashMap<>();
+        Map<Integer, Integer> hashToCycleMap = new HashMap<>();
         boolean repetitionFound = false;
         for (int i = 1; i <= tiltCycles; i++) {
             platform.tiltCycle();
             if (!repetitionFound) {
                 int hashCode = platform.calculateHashCode();
-                if (loadToCycleMap.containsKey(hashCode)) {
-                    int repeatingCycleLength = i - loadToCycleMap.get(hashCode);
+                if (hashToCycleMap.containsKey(hashCode)) {
+                    int repeatingCycleLength = i - hashToCycleMap.get(hashCode);
                     i = i + repeatingCycleLength * ((tiltCycles - i) / repeatingCycleLength);
                     repetitionFound = true;
                 } else {
-                    loadToCycleMap.put(hashCode, i);
+                    hashToCycleMap.put(hashCode, i);
                 }
             }
         }
