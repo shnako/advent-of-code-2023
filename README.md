@@ -66,3 +66,13 @@ or if you're using Windows:
 replacing `<day>` with the puzzle's day number and `<part>` with either 1 or 2, or 0 to run both parts.
 
 Running without the arguments will prompt you to enter them.
+
+## Results
+
+### Dashboard
+
+![Advent of Code 2023 Dashboard Result](dashboard.png)
+
+### Company Leaderboard
+
+![Anonymized Private Company Leaderboard](company-leaderboard-anonymized.png)
